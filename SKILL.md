@@ -1,19 +1,328 @@
 ---
 name: frontend-slides
-description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Uses a single Swiss Modern light theme for clean, Bauhaus-inspired, geometric slides.
+description: Create data-focused HTML presentations for Dezerv clients. Swiss Modern style optimized for portfolio reviews and financial data visualization.
 ---
 
-# Frontend Slides Skill
+# Frontend Slides Skill — Dezerv Edition
 
-Create zero-dependency, animation-rich HTML presentations that run entirely in the browser. This skill uses a single Swiss Modern light theme to generate production-quality slide decks.
+Create zero-dependency, animation-rich HTML presentations optimized for portfolio reviews and financial data visualization. This skill uses Swiss Modern design with data-focused components, number animations, and consistent Dezerv branding.
 
 ## Core Philosophy
 
 1. **Zero Dependencies** — Single HTML files with inline CSS/JS. No npm, no build tools.
-2. **Swiss Modern (Only Style)** — Clean, Bauhaus-inspired, geometric, light theme.
-3. **Distinctive Design** — Avoid generic "AI slop" aesthetics. Every presentation should feel custom-crafted.
-4. **Production Quality** — Code should be well-commented, accessible, and performant.
-5. **Viewport Fitting (CRITICAL)** — Every slide MUST fit exactly within the viewport. No scrolling within slides, ever. This is non-negotiable.
+2. **Data-Focused Design** — Swiss Modern variant optimized for portfolio data, charts, and financial metrics.
+3. **Dezerv Branding** — Every presentation features the Dezerv logo (SVG) prominently on title slide and in content slide headers.
+4. **Animated Numbers** — Data values animate from 0 to target with smooth easing for visual impact.
+5. **Viewport Fitting (CRITICAL)** — Every slide MUST fit exactly within the viewport. No scrolling within slides, ever.
+
+---
+
+## Typography
+
+**Fonts:** Cabinet Grotesk (display) + Satoshi (body) from Fontshare
+
+```html
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=cabinet-grotesk@500,700,800&display=swap">
+```
+
+```css
+:root {
+    --font-display: 'Cabinet Grotesk', sans-serif;
+    --font-body: 'Satoshi', -apple-system, sans-serif;
+    
+    --title-size: clamp(2.5rem, 7vw, 6rem);
+    --h2-size: clamp(1.5rem, 4vw, 3rem);
+    --h3-size: clamp(1rem, 2vw, 1.5rem);
+    --body-size: clamp(0.875rem, 1.2vw, 1.125rem);
+    --small-size: clamp(0.75rem, 1vw, 0.875rem);
+    --micro-size: clamp(0.625rem, 0.8vw, 0.75rem);
+}
+```
+
+---
+
+## Dezerv Logo Usage (MANDATORY)
+
+**Every presentation MUST include the Dezerv logo according to these brand guidelines:**
+
+### Logo Colors (Non-Negotiable)
+
+The Dezerv logo may ONLY be used in these colors:
+- **Black** (`#000000`) — Use on light backgrounds (default for Swiss Modern light theme)
+- **White** (`#ffffff`) — Use on dark backgrounds or colored sections
+
+**Never use the logo in any other color.**
+
+---
+
+## Complete Color System
+
+### Required CSS Variables
+
+Include this complete color system in every presentation:
+
+```css
+:root {
+    /* ===========================================
+       BACKGROUNDS
+       =========================================== */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-dark: #0d0d0d;
+    --bg-card: #f1f3f5;
+    
+    /* ===========================================
+       TEXT COLORS
+       =========================================== */
+    --text-primary: #0d0d0d;
+    --text-secondary: #495057;
+    --text-muted: #868e96;
+    --text-light: #adb5bd;
+    
+    /* ===========================================
+       MONOCHROMATIC DATA SCALE
+       For charts, bars, and data visualization
+       =========================================== */
+    --data-1: #0d0d0d;   /* Darkest - primary data */
+    --data-2: #343a40;
+    --data-3: #495057;   /* Mid-tone */
+    --data-4: #868e96;
+    --data-5: #adb5bd;   /* Light */
+    --data-6: #dee2e6;   /* Lightest */
+    
+    /* ===========================================
+       DEZERV SEMANTIC COLORS
+       For portfolio performance indicators
+       =========================================== */
+    --color-positive: #23625E;  /* Green - gains, growth */
+    --color-negative: #AB2626;  /* Red - losses, decline */
+    --color-warning: #B1511D;   /* Orange - info, caution */
+    
+    /* ===========================================
+       ACCENT (use sparingly)
+       =========================================== */
+    --accent: #e03131;          /* Swiss red - highlights only */
+    --accent-light: #fff5f5;
+}
+```
+
+### Semantic Color Usage
+
+| Color | Variable | Usage |
+|-------|----------|-------|
+| **Dezerv Green** | `--color-positive` | Portfolio gains, growth, success (+12.5%, ₹2.4L profit) |
+| **Dezerv Red** | `--color-negative` | Portfolio losses, decline, errors (-8.2%, ₹50K loss) |
+| **Dezerv Orange** | `--color-warning` | Info, warnings, pending status |
+
+### Data Scale Usage
+
+Use the monochromatic `--data-1` through `--data-6` scale for:
+- Stacked bar chart segments
+- Donut/pie chart slices
+- Allocation tables
+- Legend items
+
+### Utility Classes for Data Representation
+
+Include these utility classes for easy color application:
+
+```css
+/* ===========================================
+   SEMANTIC COLOR UTILITIES
+   Use for portfolio data and status indicators
+   =========================================== */
+
+/* Positive (gains, success, growth) */
+.positive, .gain, .up {
+    color: var(--color-positive);
+}
+
+.bg-positive {
+    background-color: var(--color-positive);
+    color: var(--text-primary-inverse);
+}
+
+/* Negative (losses, errors, decline) */
+.negative, .loss, .down {
+    color: var(--color-negative);
+}
+
+.bg-negative {
+    background-color: var(--color-negative);
+    color: var(--text-primary-inverse);
+}
+
+/* Warning/Info (caution, pending, neutral) */
+.warning, .info, .pending {
+    color: var(--color-warning);
+}
+
+.bg-warning {
+    background-color: var(--color-warning);
+    color: var(--text-primary-inverse);
+}
+
+/* Data value styling */
+.data-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+.data-value.positive::before {
+    content: '+';
+}
+
+.data-value.negative::before {
+    content: '';  /* Negative sign included in value */
+}
+```
+
+### Example Usage in HTML
+
+```html
+<!-- Portfolio performance -->
+<div class="metric">
+    <span class="label">Total Returns</span>
+    <span class="data-value positive">+24.5%</span>
+</div>
+
+<div class="metric">
+    <span class="label">This Month</span>
+    <span class="data-value negative">-2.1%</span>
+</div>
+
+<!-- Status indicators -->
+<span class="positive">● Invested</span>
+<span class="warning">● Pending</span>
+<span class="negative">● Withdrawn</span>
+
+<!-- Comparison table -->
+<table>
+    <tr>
+        <td>Equity</td>
+        <td class="positive">+18.2%</td>
+    </tr>
+    <tr>
+        <td>Debt</td>
+        <td class="negative">-1.5%</td>
+    </tr>
+</table>
+```
+
+### Logo Placement
+
+**Title Slide (First Slide):**
+- Display the Dezerv logo prominently
+- Position: Top-left corner OR centered above the main heading
+- Size: `width: clamp(100px, 15vw, 180px)` — visible but not overwhelming
+
+**All Other Slides:**
+- Display the Dezerv logo subtly as a watermark
+- Position: Bottom-right corner (fixed position)
+- Size: `width: clamp(60px, 8vw, 100px)` — subtle but visible
+- Opacity: 0.6–0.8 for subtle presence
+
+### Dezerv Logo SVG (Inline)
+
+Include this SVG inline in every presentation. Use CSS `fill` to control color.
+
+**Black version (for light backgrounds):**
+```html
+<!-- Dezerv Logo - Black (use on light backgrounds) -->
+<svg class="dezerv-logo" viewBox="0 0 128 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5913 6.3999C19.5734 6.40001 23.1999 10.1524 23.1999 15.9999C23.1999 21.8474 19.5734 25.5998 13.5913 25.5999H6.3999V6.3999H13.5913ZM11.2976 10.7155V21.253H13.3429C16.5045 21.253 18.2718 19.2207 18.2718 15.9999C18.2718 12.7478 16.5045 10.7155 13.3429 10.7155H11.2976Z" fill="#000000"/>
+    <path d="M41.1999 10.7155H32.7507V13.7171H40.478V17.939H32.7507V21.253H41.1999V25.5999H27.9999V6.3999H41.1999V10.7155Z" fill="#000000"/>
+    <path d="M61.5046 10.0897L52.5819 21.253H61.5999V25.5999H45.9999V21.8788L55.0179 10.7155H46.0952V6.3999H61.5046V10.0897Z" fill="#000000"/>
+    <path d="M79.5999 10.7155H71.1507V13.7171H78.878V17.939H71.1507V21.253H79.5999V25.5999H66.3999V6.3999H79.5999V10.7155Z" fill="#000000"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M92.664 6.3999C96.6163 6.3999 99.3412 8.74505 99.3413 12.9351C99.3413 15.8432 97.9338 17.8446 95.6882 18.7202L99.9999 25.5999H94.6702L90.8374 19.2522H89.1608V25.5999H84.3999V6.3999H92.664ZM89.1608 15.2491H92.1554C93.8618 15.249 94.6405 14.3421 94.6405 12.9351C94.6404 11.5282 93.8617 10.6219 92.1554 10.6218H89.1608V15.2491Z" fill="#000000"/>
+    <path d="M112.109 18.814L116.448 6.3999H121.6L114.451 25.5999H109.549L102.4 6.3999H107.769L112.109 18.814Z" fill="#000000"/>
+</svg>
+```
+
+**White version (for dark backgrounds):**
+```html
+<!-- Dezerv Logo - White (use on dark backgrounds) -->
+<svg class="dezerv-logo" viewBox="0 0 128 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5913 6.3999C19.5734 6.40001 23.1999 10.1524 23.1999 15.9999C23.1999 21.8474 19.5734 25.5998 13.5913 25.5999H6.3999V6.3999H13.5913ZM11.2976 10.7155V21.253H13.3429C16.5045 21.253 18.2718 19.2207 18.2718 15.9999C18.2718 12.7478 16.5045 10.7155 13.3429 10.7155H11.2976Z" fill="#ffffff"/>
+    <path d="M41.1999 10.7155H32.7507V13.7171H40.478V17.939H32.7507V21.253H41.1999V25.5999H27.9999V6.3999H41.1999V10.7155Z" fill="#ffffff"/>
+    <path d="M61.5046 10.0897L52.5819 21.253H61.5999V25.5999H45.9999V21.8788L55.0179 10.7155H46.0952V6.3999H61.5046V10.0897Z" fill="#ffffff"/>
+    <path d="M79.5999 10.7155H71.1507V13.7171H78.878V17.939H71.1507V21.253H79.5999V25.5999H66.3999V6.3999H79.5999V10.7155Z" fill="#ffffff"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M92.664 6.3999C96.6163 6.3999 99.3412 8.74505 99.3413 12.9351C99.3413 15.8432 97.9338 17.8446 95.6882 18.7202L99.9999 25.5999H94.6702L90.8374 19.2522H89.1608V25.5999H84.3999V6.3999H92.664ZM89.1608 15.2491H92.1554C93.8618 15.249 94.6405 14.3421 94.6405 12.9351C94.6404 11.5282 93.8617 10.6219 92.1554 10.6218H89.1608V15.2491Z" fill="#ffffff"/>
+    <path d="M112.109 18.814L116.448 6.3999H121.6L114.451 25.5999H109.549L102.4 6.3999H107.769L112.109 18.814Z" fill="#ffffff"/>
+</svg>
+```
+
+### Required Logo CSS
+
+Include this CSS in every presentation:
+
+```css
+/* ===========================================
+   DEZERV LOGO STYLES
+   Consistent branding across all slides
+   =========================================== */
+
+/* Base logo styling */
+.dezerv-logo {
+    display: block;
+    height: auto;
+}
+
+/* Title slide: Prominent logo */
+.title-slide .dezerv-logo {
+    width: clamp(100px, 15vw, 180px);
+    margin-bottom: var(--content-gap);
+}
+
+/* All other slides: Subtle watermark in corner */
+.dezerv-logo-watermark {
+    position: fixed;
+    bottom: clamp(1rem, 3vw, 2rem);
+    right: clamp(1rem, 3vw, 2rem);
+    width: clamp(60px, 8vw, 100px);
+    opacity: 0.7;
+    z-index: 50;
+    pointer-events: none;
+}
+
+/* Hide watermark on very short screens */
+@media (max-height: 500px) {
+    .dezerv-logo-watermark {
+        display: none;
+    }
+}
+```
+
+### HTML Structure with Logo
+
+**Title Slide:**
+```html
+<section class="slide title-slide">
+    <div class="slide-content">
+        <!-- Prominent Dezerv logo -->
+        <svg class="dezerv-logo reveal" viewBox="0 0 128 32" ...>
+            <!-- Black logo paths -->
+        </svg>
+        
+        <h1 class="reveal">Presentation Title</h1>
+        <p class="subtitle reveal">Subtitle or tagline</p>
+    </div>
+</section>
+```
+
+**Global Watermark (outside slides, fixed position):**
+```html
+<body>
+    <!-- Dezerv watermark - appears on all slides -->
+    <svg class="dezerv-logo-watermark" viewBox="0 0 128 32" ...>
+        <!-- Black logo paths -->
+    </svg>
+    
+    <!-- Slides -->
+    <section class="slide title-slide">...</section>
+    <section class="slide">...</section>
+</body>
+```
 
 ---
 
@@ -297,7 +606,7 @@ For projects with multiple presentations:
 
 ### HTML Architecture
 
-Follow this structure for all presentations:
+Follow this structure for all Dezerv presentations:
 
 ```html
 <!DOCTYPE html>
@@ -305,182 +614,130 @@ Follow this structure for all presentations:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presentation Title</title>
-
-    <!-- Fonts (use Fontshare or Google Fonts) -->
-    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=...">
-
+    <title>Portfolio Review | Client Name</title>
+    
+    <!-- Fonts: Cabinet Grotesk + Satoshi from Fontshare -->
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=cabinet-grotesk@500,700,800&display=swap">
+    
     <style>
         /* ===========================================
-           CSS CUSTOM PROPERTIES (THEME)
-           Easy to modify: change these to change the whole look
+           SWISS MODERN THEME — DEZERV EDITION
+           Minimal, precise, data-focused design
            =========================================== */
         :root {
-            /* Colors */
-            --bg-primary: #0a0f1c;
-            --bg-secondary: #111827;
-            --text-primary: #ffffff;
-            --text-secondary: #9ca3af;
-            --accent: #00ffcc;
-            --accent-glow: rgba(0, 255, 204, 0.3);
-
-            /* Typography - MUST use clamp() for responsive scaling */
-            --font-display: 'Clash Display', sans-serif;
-            --font-body: 'Satoshi', sans-serif;
-            --title-size: clamp(2rem, 6vw, 5rem);
-            --subtitle-size: clamp(0.875rem, 2vw, 1.25rem);
-            --body-size: clamp(0.75rem, 1.2vw, 1rem);
-
-            /* Spacing - MUST use clamp() for responsive scaling */
-            --slide-padding: clamp(1.5rem, 4vw, 4rem);
-            --content-gap: clamp(1rem, 2vw, 2rem);
-
+            /* Backgrounds */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-dark: #0d0d0d;
+            --bg-card: #f1f3f5;
+            
+            /* Text */
+            --text-primary: #0d0d0d;
+            --text-secondary: #495057;
+            --text-muted: #868e96;
+            --text-light: #adb5bd;
+            
+            /* Data visualization scale */
+            --data-1: #0d0d0d;
+            --data-2: #343a40;
+            --data-3: #495057;
+            --data-4: #868e96;
+            --data-5: #adb5bd;
+            --data-6: #dee2e6;
+            
+            /* Dezerv semantic colors */
+            --color-positive: #23625E;
+            --color-negative: #AB2626;
+            --color-warning: #B1511D;
+            
+            /* Accent */
+            --accent: #e03131;
+            
+            /* Typography */
+            --font-display: 'Cabinet Grotesk', sans-serif;
+            --font-body: 'Satoshi', -apple-system, sans-serif;
+            --title-size: clamp(2.5rem, 7vw, 6rem);
+            --h2-size: clamp(1.5rem, 4vw, 3rem);
+            --h3-size: clamp(1rem, 2vw, 1.5rem);
+            --body-size: clamp(0.875rem, 1.2vw, 1.125rem);
+            --small-size: clamp(0.75rem, 1vw, 0.875rem);
+            --micro-size: clamp(0.625rem, 0.8vw, 0.75rem);
+            
+            /* Spacing */
+            --slide-padding: clamp(2rem, 5vw, 6rem);
+            --content-gap: clamp(1.5rem, 3vw, 3rem);
+            --grid-gap: clamp(1rem, 2vw, 2rem);
+            
             /* Animation */
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            --duration-normal: 0.6s;
+            --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --duration-fast: 0.25s;
+            --duration-normal: 0.4s;
         }
 
-        /* ===========================================
-           BASE STYLES
-           =========================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-snap-type: y mandatory;
-            height: 100%;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            height: 100%;
-        }
-
-        /* ===========================================
-           SLIDE CONTAINER
-           CRITICAL: Each slide MUST fit exactly in viewport
-           - Use height: 100vh (NOT min-height)
-           - Use overflow: hidden to prevent scroll
-           - Content must scale with clamp() values
-           =========================================== */
-        .slide {
-            width: 100vw;
-            height: 100vh; /* EXACT viewport height - no scrolling */
-            height: 100dvh; /* Dynamic viewport height for mobile */
-            padding: var(--slide-padding);
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden; /* Prevent any content overflow */
-        }
-
-        /* Content wrapper that prevents overflow */
-        .slide-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            max-height: 100%;
-            overflow: hidden;
-        }
-
-        /* ===========================================
-           RESPONSIVE BREAKPOINTS
-           Adjust content for different screen sizes
-           =========================================== */
-        @media (max-height: 600px) {
-            :root {
-                --slide-padding: clamp(1rem, 3vw, 2rem);
-                --content-gap: clamp(0.5rem, 1.5vw, 1rem);
-            }
-        }
-
-        @media (max-width: 768px) {
-            :root {
-                --title-size: clamp(1.5rem, 8vw, 3rem);
-            }
-        }
-
-        @media (max-height: 500px) and (orientation: landscape) {
-            /* Extra compact for landscape phones */
-            :root {
-                --title-size: clamp(1.25rem, 5vw, 2rem);
-                --slide-padding: clamp(0.75rem, 2vw, 1.5rem);
-            }
-        }
-
-        /* ===========================================
-           ANIMATIONS
-           Trigger via .visible class (added by JS on scroll)
-           =========================================== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity var(--duration-normal) var(--ease-out-expo),
-                        transform var(--duration-normal) var(--ease-out-expo);
-        }
-
-        .slide.visible .reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Stagger children */
-        .reveal:nth-child(1) { transition-delay: 0.1s; }
-        .reveal:nth-child(2) { transition-delay: 0.2s; }
-        .reveal:nth-child(3) { transition-delay: 0.3s; }
-        .reveal:nth-child(4) { transition-delay: 0.4s; }
-
-        /* ... more styles ... */
+        /* Base styles, slide container, grids, data cards... */
+        /* See STYLE_PRESETS.md for complete CSS */
     </style>
 </head>
 <body>
-    <!-- Progress bar (optional) -->
+    <!-- Progress Bar -->
     <div class="progress-bar"></div>
+    
+    <!-- Navigation Dots -->
+    <nav class="nav-dots"></nav>
+    
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">
+        <kbd>↑</kbd> <kbd>↓</kbd> Navigate
+    </div>
 
-    <!-- Navigation dots (optional) -->
-    <nav class="nav-dots">
-        <!-- Generated by JS -->
-    </nav>
-
-    <!-- Slides -->
+    <!-- SLIDE 1: Title (Dark) -->
     <section class="slide title-slide">
-        <h1 class="reveal">Presentation Title</h1>
-        <p class="reveal">Subtitle or author</p>
+        <div class="slide-content">
+            <!-- Dezerv Logo (White for dark bg) -->
+            <svg class="dezerv-logo reveal" viewBox="0 0 128 32" ...>
+                <!-- White logo paths -->
+            </svg>
+            
+            <h1 class="reveal">Portfolio<br>Review</h1>
+            <div class="title-meta reveal">
+                <div class="title-meta-item">
+                    <span class="title-meta-label">Client</span>
+                    <span class="title-meta-value">Client Name</span>
+                </div>
+                <div class="title-meta-item">
+                    <span class="title-meta-label">Date</span>
+                    <span class="title-meta-value">February 2026</span>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- SLIDE 2: Data Overview -->
     <section class="slide">
-        <h2 class="reveal">Slide Title</h2>
-        <p class="reveal">Content...</p>
+        <header class="slide-header reveal">
+            <!-- Dezerv Logo (Black for light bg) -->
+            <svg class="dezerv-logo" viewBox="0 0 128 32" ...>
+                <!-- Black logo paths -->
+            </svg>
+            <span class="slide-number">01 / 09</span>
+        </header>
+        <div class="slide-content">
+            <h2 class="reveal">Portfolio Overview</h2>
+            <div class="grid-4 reveal">
+                <div class="data-card accent">
+                    <span class="data-label">Total AUM</span>
+                    <span class="data-value">₹7.93Cr</span>
+                </div>
+                <!-- More data cards... -->
+            </div>
+        </div>
     </section>
 
     <!-- More slides... -->
 
     <script>
-        /* ===========================================
-           SLIDE PRESENTATION CONTROLLER
-           Handles navigation, animations, and interactions
-           =========================================== */
-
-        class SlidePresentation {
-            constructor() {
-                // ... initialization
-            }
-
-            // ... methods
-        }
-
-        // Initialize
-        new SlidePresentation();
+        /* NumberAnimator + SlidePresentation classes */
+        /* See "Number Ticker Animation" section below */
     </script>
 </body>
 </html>
@@ -488,12 +745,17 @@ Follow this structure for all presentations:
 
 ### Required JavaScript Features
 
-Every presentation should include:
+Every presentation MUST include:
 
-1. **SlidePresentation Class** — Main controller
+1. **NumberAnimator Class** — Animates data values from 0 to target
+   - Parses currency (₹), percentages (%), and units (Cr, L)
+   - Easing function for smooth deceleration
+   - Triggers when slide becomes visible
+
+2. **SlidePresentation Class** — Main controller
    - Keyboard navigation (arrows, space)
    - Touch/swipe support
-   - Mouse wheel navigation
+   - Intersection Observer for visibility
    - Progress bar updates
    - Navigation dots
 
@@ -753,6 +1015,151 @@ Use this guide to match animations to intended feelings:
 - Grid-breaking layouts
 - Serif headlines, sans-serif body
 - Black and white with one accent
+
+---
+
+## Number Ticker Animation (REQUIRED)
+
+Every presentation with data values MUST include the NumberAnimator class. This creates the signature animated number effect where values count up from 0.
+
+### NumberAnimator Class
+
+```javascript
+/* ===========================================
+   NUMBER TICKER ANIMATION
+   Animates numbers from 0 to target value
+   with easing, completes in under 2 seconds
+   =========================================== */
+class NumberAnimator {
+    constructor() {
+        this.animatedSlides = new Set();
+        this.duration = 1000; // 1 second
+    }
+
+    // Easing function for smooth deceleration
+    easeOutExpo(t) {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    // Parse number from text, handling currency, percentages, etc.
+    parseNumber(text) {
+        const match = text.match(/([₹+\-]?\s*)(\d+(?:[.,]\d+)?)\s*(%|Cr|L|Lakhs)?/);
+        if (!match) return null;
+
+        const prefix = match[1] || '';
+        const numStr = match[2].replace(',', '.');
+        const suffix = match[3] || '';
+        const value = parseFloat(numStr);
+
+        if (isNaN(value)) return null;
+
+        const decimalMatch = numStr.match(/\.(\d+)/);
+        const decimals = decimalMatch ? decimalMatch[1].length : 0;
+
+        return { prefix, value, suffix, decimals, original: text };
+    }
+
+    // Format number back to string
+    formatNumber(value, decimals, prefix, suffix) {
+        let formatted = value.toFixed(decimals);
+        if (value >= 1000) {
+            formatted = value.toLocaleString('en-IN', { 
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals 
+            });
+        }
+        return `${prefix}${formatted}${suffix}`;
+    }
+
+    // Animate a single element
+    animateElement(element, parsed) {
+        const startTime = performance.now();
+        const startValue = 0;
+        const endValue = parsed.value;
+
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / this.duration, 1);
+            const easedProgress = this.easeOutExpo(progress);
+            const currentValue = startValue + (endValue - startValue) * easedProgress;
+
+            element.textContent = this.formatNumber(
+                currentValue, 
+                parsed.decimals, 
+                parsed.prefix, 
+                parsed.suffix
+            );
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                element.textContent = parsed.original;
+            }
+        };
+
+        requestAnimationFrame(animate);
+    }
+
+    // Find and animate all numbers in a slide
+    animateSlide(slide) {
+        const slideIndex = Array.from(document.querySelectorAll('.slide')).indexOf(slide);
+        
+        if (this.animatedSlides.has(slideIndex)) return;
+        this.animatedSlides.add(slideIndex);
+
+        const selectors = [
+            '.data-value',
+            '.account-value', 
+            '.chart-stat-value',
+            '.donut-value',
+            '.strategy-pct',
+            '.stacked-segment'
+        ];
+
+        const elements = slide.querySelectorAll(selectors.join(', '));
+
+        elements.forEach((element, index) => {
+            const text = element.textContent.trim();
+            const parsed = this.parseNumber(text);
+            
+            if (parsed && parsed.value > 0) {
+                setTimeout(() => {
+                    this.animateElement(element, parsed);
+                }, index * 50); // 50ms stagger
+            }
+        });
+    }
+}
+```
+
+### Integration with SlidePresentation
+
+```javascript
+class SlidePresentation {
+    constructor() {
+        this.slides = document.querySelectorAll('.slide');
+        this.numberAnimator = new NumberAnimator();
+        // ... other initialization
+    }
+
+    setupIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Trigger number animations after reveal animation starts
+                    setTimeout(() => {
+                        this.numberAnimator.animateSlide(entry.target);
+                    }, 200);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        this.slides.forEach(slide => observer.observe(slide));
+    }
+}
+```
 
 ---
 
