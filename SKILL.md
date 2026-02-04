@@ -1,16 +1,16 @@
 ---
 name: frontend-slides
-description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
+description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Uses a single Swiss Modern light theme for clean, Bauhaus-inspired, geometric slides.
 ---
 
 # Frontend Slides Skill
 
-Create zero-dependency, animation-rich HTML presentations that run entirely in the browser. This skill helps non-designers discover their preferred aesthetic through visual exploration ("show, don't tell"), then generates production-quality slide decks.
+Create zero-dependency, animation-rich HTML presentations that run entirely in the browser. This skill uses a single Swiss Modern light theme to generate production-quality slide decks.
 
 ## Core Philosophy
 
 1. **Zero Dependencies** — Single HTML files with inline CSS/JS. No npm, no build tools.
-2. **Show, Don't Tell** — People don't know what they want until they see it. Generate visual previews, not abstract choices.
+2. **Swiss Modern (Only Style)** — Clean, Bauhaus-inspired, geometric, light theme.
 3. **Distinctive Design** — Avoid generic "AI slop" aesthetics. Every presentation should feel custom-crafted.
 4. **Production Quality** — Code should be well-commented, accessible, and performant.
 5. **Viewport Fitting (CRITICAL)** — Every slide MUST fit exactly within the viewport. No scrolling within slides, ever. This is non-negotiable.
@@ -265,193 +265,13 @@ First, determine what the user wants:
 
 ## Phase 1: Content Discovery (New Presentations)
 
-Before designing, understand the content. Ask via AskUserQuestion:
-
-### Step 1.1: Presentation Context
-
-**Question 1: Purpose**
-- Header: "Purpose"
-- Question: "What is this presentation for?"
-- Options:
-  - "Pitch deck" — Selling an idea, product, or company to investors/clients
-  - "Teaching/Tutorial" — Explaining concepts, how-to guides, educational content
-  - "Conference talk" — Speaking at an event, tech talk, keynote
-  - "Internal presentation" — Team updates, strategy meetings, company updates
-
-**Question 2: Slide Count**
-- Header: "Length"
-- Question: "Approximately how many slides?"
-- Options:
-  - "Short (5-10)" — Quick pitch, lightning talk
-  - "Medium (10-20)" — Standard presentation
-  - "Long (20+)" — Deep dive, comprehensive talk
-
-**Question 3: Content**
-- Header: "Content"
-- Question: "Do you have the content ready, or do you need help structuring it?"
-- Options:
-  - "I have all content ready" — Just need to design the presentation
-  - "I have rough notes" — Need help organizing into slides
-  - "I have a topic only" — Need help creating the full outline
-
-If user has content, ask them to share it (text, bullet points, images, etc.).
+Use the content the user provides. If content is incomplete or only a topic is provided, create a concise outline and proceed without asking follow-up questions.
 
 ---
 
-## Phase 2: Style Discovery (Visual Exploration)
+## Phase 2: Style Application
 
-**CRITICAL: This is the "show, don't tell" phase.**
-
-Most people can't articulate design preferences in words. Instead of asking "do you want minimalist or bold?", we generate mini-previews and let them react.
-
-### How Users Choose Presets
-
-Users can select a style in **two ways**:
-
-**Option A: Guided Discovery (Default)**
-- User answers mood questions
-- Skill generates 3 preview files based on their answers
-- User views previews in browser and picks their favorite
-- This is best for users who don't have a specific style in mind
-
-**Option B: Direct Selection**
-- If user already knows what they want, they can request a preset by name
-- Example: "Use the Bold Signal style" or "I want something like Dark Botanical"
-- Skip to Phase 3 immediately
-
-**Available Presets:**
-| Preset | Vibe | Best For |
-|--------|------|----------|
-| Bold Signal | Confident, high-impact | Pitch decks, keynotes |
-| Electric Studio | Clean, professional | Agency presentations |
-| Creative Voltage | Energetic, retro-modern | Creative pitches |
-| Dark Botanical | Elegant, sophisticated | Premium brands |
-| Notebook Tabs | Editorial, organized | Reports, reviews |
-| Pastel Geometry | Friendly, approachable | Product overviews |
-| Split Pastel | Playful, modern | Creative agencies |
-| Vintage Editorial | Witty, personality-driven | Personal brands |
-| Neon Cyber | Futuristic, techy | Tech startups |
-| Terminal Green | Developer-focused | Dev tools, APIs |
-| Swiss Modern | Minimal, precise | Corporate, data |
-| Paper & Ink | Literary, thoughtful | Storytelling |
-
-### Step 2.0: Style Path Selection
-
-First, ask how the user wants to choose their style:
-
-**Question: Style Selection Method**
-- Header: "Style"
-- Question: "How would you like to choose your presentation style?"
-- Options:
-  - "Show me options" — Generate 3 previews based on my needs (recommended for most users)
-  - "I know what I want" — Let me pick from the preset list directly
-
-**If "Show me options"** → Continue to Step 2.1 (Mood Selection)
-
-**If "I know what I want"** → Show preset picker:
-
-**Question: Pick a Preset**
-- Header: "Preset"
-- Question: "Which style would you like to use?"
-- Options:
-  - "Bold Signal" — Vibrant card on dark, confident and high-impact
-  - "Dark Botanical" — Elegant dark with soft abstract shapes
-  - "Notebook Tabs" — Editorial paper look with colorful section tabs
-  - "Pastel Geometry" — Friendly pastels with decorative pills
-
-(If user picks one, skip to Phase 3. If they want to see more options, show additional presets or proceed to guided discovery.)
-
-### Step 2.1: Mood Selection (Guided Discovery)
-
-**Question 1: Feeling**
-- Header: "Vibe"
-- Question: "What feeling should the audience have when viewing your slides?"
-- Options:
-  - "Impressed/Confident" — Professional, trustworthy, this team knows what they're doing
-  - "Excited/Energized" — Innovative, bold, this is the future
-  - "Calm/Focused" — Clear, thoughtful, easy to follow
-  - "Inspired/Moved" — Emotional, storytelling, memorable
-- multiSelect: true (can choose up to 2)
-
-### Step 2.2: Generate Style Previews
-
-Based on their mood selection, generate **3 distinct style previews** as mini HTML files in a temporary directory. Each preview should be a single title slide showing:
-
-- Typography (font choices, heading/body hierarchy)
-- Color palette (background, accent, text colors)
-- Animation style (how elements enter)
-- Overall aesthetic feel
-
-**Preview Styles to Consider (pick 3 based on mood):**
-
-| Mood | Style Options |
-|------|---------------|
-| Impressed/Confident | "Bold Signal", "Electric Studio", "Dark Botanical" |
-| Excited/Energized | "Creative Voltage", "Neon Cyber", "Split Pastel" |
-| Calm/Focused | "Notebook Tabs", "Paper & Ink", "Swiss Modern" |
-| Inspired/Moved | "Dark Botanical", "Vintage Editorial", "Pastel Geometry" |
-
-**IMPORTANT: Never use these generic patterns:**
-- Purple gradients on white backgrounds
-- Inter, Roboto, or system fonts
-- Standard blue primary colors
-- Predictable hero layouts
-
-**Instead, use distinctive choices:**
-- Unique font pairings (Clash Display, Satoshi, Cormorant Garamond, DM Sans, etc.)
-- Cohesive color themes with personality
-- Atmospheric backgrounds (gradients, subtle patterns, depth)
-- Signature animation moments
-
-### Step 2.3: Present Previews
-
-Create the previews in: `.claude-design/slide-previews/`
-
-```
-.claude-design/slide-previews/
-├── style-a.html   # First style option
-├── style-b.html   # Second style option
-├── style-c.html   # Third style option
-└── assets/        # Any shared assets
-```
-
-Each preview file should be:
-- Self-contained (inline CSS/JS)
-- A single "title slide" showing the aesthetic
-- Animated to demonstrate motion style
-- ~50-100 lines, not a full presentation
-
-Present to user:
-```
-I've created 3 style previews for you to compare:
-
-**Style A: [Name]** — [1 sentence description]
-**Style B: [Name]** — [1 sentence description]
-**Style C: [Name]** — [1 sentence description]
-
-Open each file to see them in action:
-- .claude-design/slide-previews/style-a.html
-- .claude-design/slide-previews/style-b.html
-- .claude-design/slide-previews/style-c.html
-
-Take a look and tell me:
-1. Which style resonates most?
-2. What do you like about it?
-3. Anything you'd change?
-```
-
-Then use AskUserQuestion:
-
-**Question: Pick Your Style**
-- Header: "Style"
-- Question: "Which style preview do you prefer?"
-- Options:
-  - "Style A: [Name]" — [Brief description]
-  - "Style B: [Name]" — [Brief description]
-  - "Style C: [Name]" — [Brief description]
-  - "Mix elements" — Combine aspects from different styles
-
-If "Mix elements", ask for specifics.
+Apply the single available style: **Swiss Modern — Clean, Bauhaus-inspired, geometric (Light Theme)**. Do not ask style selection questions or generate preview files.
 
 ---
 
@@ -835,9 +655,9 @@ All images have been saved to the assets folder.
 Does this look correct? Should I proceed with style selection?
 ```
 
-### Step 4.3: Style Selection
+### Step 4.3: Style Application
 
-Proceed to Phase 2 (Style Discovery) with the extracted content in mind.
+Proceed to Phase 2 (Style Application) with the extracted content in mind.
 
 ### Step 4.4: Generate HTML
 
@@ -866,7 +686,7 @@ When the presentation is complete:
 Your presentation is ready!
 
 📁 File: [filename].html
-🎨 Style: [Style Name]
+🎨 Style: Swiss Modern (Light)
 📊 Slides: [count]
 
 **Navigation:**
@@ -1073,15 +893,11 @@ class TiltEffect {
 ## Example Session Flow
 
 1. User: "I want to create a pitch deck for my AI startup"
-2. Skill asks about purpose, length, content
-3. User shares their bullet points and key messages
-4. Skill asks about desired feeling (Impressed + Excited)
-5. Skill generates 3 style previews
-6. User picks Style B (Neon Cyber), asks for darker background
-7. Skill generates full presentation with all slides
-8. Skill opens the presentation in browser
-9. User requests tweaks to specific slides
-10. Final presentation delivered
+2. User shares their bullet points and key messages
+3. Skill generates full presentation with all slides in Swiss Modern (Light)
+4. Skill opens the presentation in browser
+5. User requests tweaks to specific slides
+6. Final presentation delivered
 
 ---
 
@@ -1090,8 +906,6 @@ class TiltEffect {
 1. User: "Convert my slides.pptx to a web presentation"
 2. Skill extracts content and images from PPT
 3. Skill confirms extracted content with user
-4. Skill asks about desired feeling/style
-5. Skill generates style previews
-6. User picks a style
-7. Skill generates HTML presentation with preserved assets
-8. Final presentation delivered
+4. Skill applies Swiss Modern (Light)
+5. Skill generates HTML presentation with preserved assets
+6. Final presentation delivered
