@@ -19,19 +19,23 @@ Create zero-dependency, animation-rich HTML presentations optimized for portfoli
 
 ## Typography
 
-**Fonts:** Cabinet Grotesk (display) + Satoshi (body) from Fontshare
+**Font:** Inter (display + body) from Google Fonts
+
+Inter is a highly legible typeface designed for screens, perfect for data-heavy financial presentations. Use heavier weights (700-900) for headings and lighter weights (400-500) for body text.
 
 ```html
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=cabinet-grotesk@500,700,800&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 ```
 
 ```css
 :root {
-    --font-display: 'Cabinet Grotesk', sans-serif;
-    --font-body: 'Satoshi', -apple-system, sans-serif;
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     
-    --title-size: clamp(2.5rem, 7vw, 6rem);
-    --h2-size: clamp(1.5rem, 4vw, 3rem);
+    --title-size: clamp(2.5rem, 7vw, 5rem);
+    --h2-size: clamp(1.5rem, 4vw, 2.5rem);
     --h3-size: clamp(1rem, 2vw, 1.5rem);
     --body-size: clamp(0.875rem, 1.2vw, 1.125rem);
     --small-size: clamp(0.75rem, 1vw, 0.875rem);

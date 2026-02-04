@@ -61,10 +61,14 @@ Curated visual styles for Dezerv client presentations. Minimal, precise, data-fo
 
 ### Typography
 
-**Fonts:** `Cabinet Grotesk` (display) + `Satoshi` (body) — both from Fontshare
+**Fonts:** `Inter` (display + body) — from Google Fonts
+
+Inter is a highly legible typeface designed for screens, perfect for data-heavy presentations.
 
 ```html
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=cabinet-grotesk@500,700,800&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 ```
 
 ### Complete Color System
@@ -118,13 +122,13 @@ Curated visual styles for Dezerv client presentations. Minimal, precise, data-fo
 
 ```css
 :root {
-    /* Font families */
-    --font-display: 'Cabinet Grotesk', sans-serif;
-    --font-body: 'Satoshi', -apple-system, sans-serif;
+    /* Font families - Inter for everything */
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     
     /* Responsive type scale */
-    --title-size: clamp(2.5rem, 7vw, 6rem);
-    --h2-size: clamp(1.5rem, 4vw, 3rem);
+    --title-size: clamp(2.5rem, 7vw, 5rem);
+    --h2-size: clamp(1.5rem, 4vw, 2.5rem);
     --h3-size: clamp(1rem, 2vw, 1.5rem);
     --body-size: clamp(0.875rem, 1.2vw, 1.125rem);
     --small-size: clamp(0.75rem, 1vw, 0.875rem);
@@ -420,7 +424,7 @@ Curated visual styles for Dezerv client presentations. Minimal, precise, data-fo
 
 | Preset | Display Font | Body Font | Source |
 |--------|--------------|-----------|--------|
-| Swiss Modern | Cabinet Grotesk | Satoshi | Fontshare |
+| Swiss Modern | Inter (700-900) | Inter (400-500) | Google Fonts |
 
 ---
 
