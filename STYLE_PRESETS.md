@@ -334,6 +334,12 @@ Inter is a highly legible typeface designed for screens, perfect for data-heavy 
 }
 ```
 
+> **Important - Text Color Legibility Rules:**
+> - Semantic text colors (`.positive`, `.negative`, `.warning`) are for light backgrounds only
+> - Light gray text (`--text-muted`, `--text-light`) is for **pure white (#FFFFFF) backgrounds only**
+> - On dark or accent-colored cards, use **white text only**
+> - Never use green/red/orange text on dark or colored backgrounds
+
 ---
 
 ## Icon Styles (Heroicons)

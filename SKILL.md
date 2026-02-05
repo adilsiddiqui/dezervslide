@@ -166,7 +166,33 @@ Include these utility classes for easy color application:
     background-color: var(--color-warning);
     color: var(--text-primary-inverse);
 }
+```
 
+### Text Color Rules (CRITICAL for Legibility)
+
+**Text color restrictions to ensure readability:**
+
+| Text Color | Allowed Backgrounds |
+|------------|---------------------|
+| Black (`--text-primary`) | Light backgrounds only |
+| White (`#ffffff`) | Dark or colored backgrounds only |
+| Light gray (`--text-muted`, `--text-light`) | **Pure white (#FFFFFF) background ONLY** |
+| Semantic colors (green, red, orange) | Light backgrounds only (`--bg-card`, `--bg-primary`) |
+
+| Background Type | Allowed Text Colors |
+|-----------------|---------------------|
+| Pure white (`#FFFFFF`) | Any: black, gray, green, red, orange |
+| Light (`--bg-primary`, `--bg-card`) | Black, dark gray, green, red, orange — **NO light gray** |
+| Dark (`--bg-dark`, black) | **White ONLY** |
+| Accent (`--accent`, green) | **White ONLY** |
+| Colored backgrounds (`--color-positive`, etc.) | **White ONLY** |
+
+**Never use:**
+- `.positive`, `.negative`, `.warning` text on `.data-card.dark` or `.data-card.accent`
+- Light gray text (`--text-muted`, `--text-light`) on any background except pure white
+- Green/red/orange text on any dark or colored background
+
+```css
 /* Data value styling */
 .data-value {
     font-family: var(--font-display);
