@@ -68,8 +68,9 @@ Open `demo-swiss-modern.html` in a browser to see the template in action.
 
 ### Title Slide (Dark)
 - Dark background (#0d0d0d)
-- White Dezerv logo
+- White Dezerv logo aligned to top left
 - Client name, date, presentation type
+- All content left-bottom aligned
 
 ### Content Slides
 - White background

@@ -78,10 +78,11 @@ Inter is a highly legible typeface designed for screens, perfect for data-heavy 
     /* ===========================================
        BACKGROUNDS
        =========================================== */
-    --bg-primary: #ffffff;
+    --bg-primary: #FAFAFA;        /* Content slide background */
     --bg-secondary: #f8f9fa;
-    --bg-dark: #0d0d0d;
-    --bg-card: #f1f3f5;
+    --bg-dark: #0d0d0d;           /* Title/End slides - dark */
+    --bg-card: #FDFDFC;           /* Card background */
+    --border-card: rgba(29, 27, 24, 0.08);  /* Card border */
     
     /* ===========================================
        TEXT COLORS
@@ -165,6 +166,8 @@ Inter is a highly legible typeface designed for screens, perfect for data-heavy 
 ```css
 .data-card {
     background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
     padding: clamp(1.25rem, 2.5vw, 2rem);
     display: flex;
     flex-direction: column;
@@ -330,6 +333,80 @@ Inter is a highly legible typeface designed for screens, perfect for data-heavy 
     color: #ffffff;
 }
 ```
+
+---
+
+## Icon Styles (Heroicons)
+
+Use Heroicons (heroicons.com) inline SVGs for contextual visual enhancement. Icons should be subtle and meaningful.
+
+### Base Icon CSS
+
+```css
+/* ===========================================
+   ICON STYLES (Heroicons)
+   Using inline SVGs from heroicons.com
+   =========================================== */
+.icon {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: -0.2em;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+/* Size variants */
+.icon-sm { width: 1em; height: 1em; }
+.icon-lg { width: 1.5em; height: 1.5em; }
+.icon-xl { width: 2em; height: 2em; }
+
+/* Color variants - inherit or semantic */
+.icon { color: currentColor; }
+.icon-muted { color: var(--text-muted); }
+.icon-positive { color: var(--color-positive); }
+.icon-negative { color: var(--color-negative); }
+.icon-warning { color: var(--color-warning); }
+
+/* ===========================================
+   DATA LABEL ROW (Icon + Label Container)
+   Use this wrapper to safely combine icons with labels
+   =========================================== */
+.data-label-row {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.data-label-row .icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+
+.data-label-row .data-label {
+    margin: 0;
+}
+```
+
+> **Important**: Never embed icons directly inside `.data-label` spans. The `text-transform: uppercase` property on `.data-label` can cause icon sizing issues. Always use `.data-label-row` as a wrapper.
+
+### Usage Guidelines
+
+| Context | Max Icons | Notes |
+|---------|-----------|-------|
+| Data cards | 1-2 | Only for key metrics |
+| Bullet lists | 1-3 | For emphasis only |
+| Headers | 0-1 | Optional |
+| Status indicators | As needed | Gains/losses |
+
+### Fetching Icons
+
+1. Visit https://heroicons.com
+2. Search for icon (e.g., "wallet")
+3. Select **Outline** style (24x24)
+4. Copy SVG code
+5. Add `class="icon"` to the `<svg>` element
 
 ---
 
